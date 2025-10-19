@@ -425,14 +425,14 @@ class ROS2Backend(Backend):
             topicName=data["camera_name"] + "/color/camera_info", 
             frameId=data["camera_name"], 
             queueSize=1,
-            width=camera_info["width"],
-            height=camera_info["height"],
-            projectionType=camera_info["projectionType"],
-            k=camera_info["k"].reshape([1, 9]),
-            r=camera_info["r"].reshape([1, 9]),
-            p=camera_info["p"].reshape([1, 12]),
-            physicalDistortionModel=camera_info["physicalDistortionModel"],
-            physicalDistortionCoefficients=camera_info["physicalDistortionCoefficients"]
+            width=camera_info.width,
+            height=camera_info.height,
+            projectionType=camera_info.distortion_model,
+            k=camera_info.k.reshape([1, 9]),
+            r=camera_info.r.reshape([1, 9]),
+            p=camera_info.p.reshape([1, 12]),
+            physicalDistortionModel=camera_info.distortion_model,
+            physicalDistortionCoefficients=camera_info.d,
         )
 
         writer_info.attach([render_prod_path])
