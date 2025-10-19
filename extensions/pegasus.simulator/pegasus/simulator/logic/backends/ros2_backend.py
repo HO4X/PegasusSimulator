@@ -418,7 +418,8 @@ class ROS2Backend(Backend):
 
         # Create a writer for publishing the camera info
         writer_info = rep.writers.get("ROS2PublishCameraInfo")
-        camera_info = read_camera_info(render_product_path=render_prod_path)
+        camera_info, _ = read_camera_info(render_product_path=render_prod_path)
+
         writer_info.initialize(
             nodeNamespace=self._namespace + str(self._id), 
             topicName=data["camera_name"] + "/color/camera_info", 
